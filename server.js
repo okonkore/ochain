@@ -16,11 +16,12 @@ connection.connect(function(err){
 });
 
 http.createServer(function(req,res){
+	var id = 1000000000 + Math.floor( Math.random() * 9000000000 );
 	var sql = squel
 	.insert()
 	.into("user")
-	.set("id",111)
-	.set("name", "hogefuga")
+	.set("id", id)
+	.set("name", id)
 	.set("create_time",squel.str("now()"))
 	.toString();
 	res.writeHead(200,{"Content-Type":"text/html"});
