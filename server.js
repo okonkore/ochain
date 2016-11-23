@@ -4,20 +4,14 @@ var crypto = require('crypto');
 var squel = require('squel');
 
 var pool = mysql.createPool({
-	connectionLimit : 60,
+	connectionLimit : 10,
 	host:'localhost',
 	user:'root',
 	database:'ochain'
 });
-pool.on('connection', function (connection) {
-	console.log('connection');
-});
-pool.on('enqueue', function(){
-	console.log('enqueue');
-})
 
 http.createServer(function(req,res){
-	var id = 100000000 + Math.floor( Math.random() * 900000000 );
+	var id = 1000000000000000000 + Math.floor( Math.random() * 9000000000000000000 );
 	var sql = squel
 	.insert()
 	.into("user")
@@ -35,7 +29,7 @@ http.createServer(function(req,res){
 		connection.query(sql, function (err, results, fields) {
 			connection.release();
 			if(err){
-				console.error(err.stack);
+				console.error(err.message);
 				res.writeHead(500,{"Content-Type":"text/html"});
 				res.end(err.stack);
 			}
