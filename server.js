@@ -16,7 +16,13 @@ connection.connect(function(err){
 });
 
 http.createServer(function(req,res){
-	console.log(
-		squel.insert().into("user").set("id",111).set("name", "hogefuga").set("create_time","now()").toString()
-	);
+	var sql = squel
+	.insert()
+	.into("user")
+	.set("id",111)
+	.set("name", "hogefuga")
+	.set("create_time",squel.str("now()"))
+	.toString();
+	res.writeHead(200,{"Content-Type":"text/html"});
+	res.end(sql);
 }).listen(1337,"160.16.213.168");
