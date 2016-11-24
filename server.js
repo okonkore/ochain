@@ -12,9 +12,9 @@ http.createServer(function(req,res){
 	.set("name", id)
 	.set("create_time",squel.str("now()"))
 	.toString();
-	db.query().then(function(res){
+	db.query(sql).then(function(result){
 		res.writeHead(200,{"Content-Type":"text/html"});
-		res.end(res);
+		res.end(sql);
 	}).catch(function(err){
 		res.writeHead(500,{"Content-Type":"text/html"});
 		res.end(err.stack);
