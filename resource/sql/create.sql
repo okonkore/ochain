@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `sheild`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sheild` (
-  `uid` bigint(20) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  `shield_id` int(10) unsigned NOT NULL,
-  `create_time` datetime DEFAULT NULL,
+  `uid` bigint(20) unsigned NOT NULL COMMENT='固有ID',
+  `user_id` int(10) unsigned NOT NULL COMMENT='ユーザーID',
+  `shield_id` int(10) unsigned NOT NULL COMMENT='盾ID',
+  `create_time` datetime DEFAULT NULL COMMENT='登録日時',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='盾情報';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
