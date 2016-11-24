@@ -25,7 +25,7 @@ http.createServer(function(req,res){
 		return db.query(sql);
 	}).then(function(result){
 		res.writeHead(200,{"Content-Type":"text/html"});
-		res.end(sql);
+		res.end('success');
 	}).catch(function(err){
 		res.writeHead(500,{"Content-Type":"text/html"});
 		res.end(err.stack);
