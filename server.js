@@ -1,9 +1,17 @@
+if(process.argv[2] == null){
+	console.log('node server.js [port]');
+	process.exit(1);
+}
+
 var http = require('http');
 var crypto = require('crypto');
 var squel = require('squel');
 var db = require('./db');
 
+console.log(process.argv[2]);
+
 http.createServer(function(req,res){
+	console.log(process.argv[2]);
 	var id = 1000000000000000000 + Math.floor( Math.random() * 9000000000000000000 );
 	Promise.resolve().then(function(){
 		var sql = squel
@@ -30,4 +38,6 @@ http.createServer(function(req,res){
 		res.writeHead(500,{"Content-Type":"text/html"});
 		res.end(err.stack);
 	});
-}).listen(1337,"160.16.213.168");
+}).listen(process.argv[2],"160.16.213.168");
+console.log('server started. 160.16.213.168:' + process.argv[2]);
+
