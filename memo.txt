@@ -1,0 +1,10 @@
+# nginxの起動
+## conf
+- /etc/nginx/nginx.conf
+## 起動
+- /etc/init.d/nginx start
+
+# nodejsの起動
+- node server.js 1337
+- node server.js 1338
+
