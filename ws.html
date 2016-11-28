@@ -1,0 +1,42 @@
+<html>
+<head>
+</head>
+<body>
+<input id="message" type="text"><button id="send">send</button>
+<div id="output"></div>
+
+<script>
+(function() {
+	var ws1 = new WebSocket("ws://160.16.213.168:8888");
+	var ws2 = new WebSocket("ws://160.16.213.168:8888");
+	var output = document.getElementById('output');
+	var send = document.getElementById('send');
+
+	function logStr(eventStr, msg) {
+		return '<div>' + eventStr + ':' + msg + '</div>';
+	}
+
+	send.addEventListener('click', function() {
+		var msg = document.getElementById('message').value;
+		ws1.send(msg);
+		output.innerHTML += logStr('send', msg);
+	});
+
+	ws1.onmessage = function(e) {
+		output.innerHTML += logStr('recieved ws1', e.data);
+	};
+	ws2.onmessage = function(e) {
+		output.innerHTML += logStr('recieved ws2', e.data);
+	};
+
+	ws1.onclose = function (e) {
+		output.innerHTML += logStr('disconnect', e.code + ' - ' + e.type);
+	};
+	ws2.onclose = function (e) {
+		output.innerHTML += logStr('disconnect', e.code + ' - ' + e.type);
+	};
+}());
+
+</script>
+</body>
+</html>
